@@ -1,0 +1,20 @@
+:root {
+    --mainText: 'Raleway', sans-serif;
+    --artText: 'Comforter Brush', cursive;
+
+    --textHoverColor: #FFC107;
+}
+
+body {
+    background-color: #000000;
+    font-family: var(--mainText);
+    color: #FFFFFF;
+}
+
+#aikido .container div div img {
+    filter: grayscale(70%);
+}
+
+#eventAttr {
+    display: none;
+}
