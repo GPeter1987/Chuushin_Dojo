@@ -55,8 +55,8 @@ function getDateEvent(){
     
     // Dátum kiszedése
     let years   = ["2022", "2023"];
-    let months  = [ "Január", "Február", "Március","Április", "Május", "Június",
-                    "Július", "Augusztus", "Szeptember", "Október", "November", "December"];
+    let months  = [ "január", "február", "március", "április", "május", "június",
+                    "július", "augusztus", "szeptember", "október", "november", "december"];
     let days    = [ "1.", "2.", "3.", "4.", "5.", 
                     "6.", "7.", "8.", "9.", "10.",
                     "11.", "12.", "13.", "14.","15.",
@@ -70,6 +70,7 @@ function getDateEvent(){
     
     // Hónap kiszedése
     rawMonth = findDateParts(months,rawDate);
+    rawMonth.toLowerCase();
     rawMonth.trim();
     
     // Nap kiszedése
@@ -106,6 +107,7 @@ function getDateEvent(){
             break;
         default : console.log('Error on the event month.');
     }
+    console.log(year + " " + monthNum + " " + day);
     actualEvent(year,monthNum,day);
 }
 getDateEvent();
