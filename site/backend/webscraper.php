@@ -22,19 +22,19 @@
         # Kép címének megkeresése
         foreach($postDiv -> find('.aikido-event-image') as $a){
             $ImgUrl = $a -> attr['src'];
-            #echo $ImgUrl;
+            #echo ($ImgUrl);
         }
 
         # Esemény címének előkeresése
         foreach($postDiv -> find('h3') as $a){
             $Title = substr($a, 4, -5 );
-            #echo $Title;
+            #echo ($Title);
         }
 
         # Esemény leírása
         foreach($postDiv -> find('h4') as $a){
             $TitleDescription = substr($a, 4, -5 );
-            #echo $TitleDescription;
+            #echo ($TitleDescription);
         }
 
         # Helyszín
