@@ -36,18 +36,19 @@
             $TitleDescription = substr($a, 4, -5 );
             #echo ($TitleDescription);
         }
-
+/* Itt van a baj ,mert megváltozott a kiolvasott divnek a szerkezete és így már nem jó sorrende szedi ki a 'p' tageket. */        
         # Helyszín
         foreach($postDiv -> find('p') as $a){
-            if($Counter == 0){
+            /*
+            if($Counter == 10){
                 $Other = substr($a, 3, -4 );
             } 
-
-            if( $Counter == 1){
+            */
+            if( $Counter == 0){
                 $Place = str_replace("Helyszín:","<u>HELYSZÍN:</u> <br>",substr($a, 3, -4 ));   
             }
 
-            if( $Counter == 2){  
+            if( $Counter == 1){  
                 $Date = str_replace("Időpont:", "<u>IDŐPONT:</u> <br>", substr($a, 3, -4 ));
             }
             $Counter++;
@@ -59,19 +60,18 @@
         <div class="row mt-3 p-2 rounded">  
             <div class="col-sm-12 col-md-8 mt-auto mb-auto" id="welcomePic">
                 <img src="https://www.yurusuaikido.hu/<?php echo $ImgUrl; ?>" alt="The cover image of the event" class="img-fluid rounded w-100">
-            </div>
-                        
+            </div>          
                         <div class="col-sm-12 col-md-4 mt-auto mb-auto">
-                            <h1 class="text text-uppercase text-center text-warning m-3"><?php echo $Title; ?></h1>
+                            <h1 class="text text-uppercase text-center text-warning m-3"><?php echo ($Title); ?></h1>
                             <p class="text text-secondary">
                                 <?php echo $TitleDescription ;?>
                                 <br>
                                 <br>
-                                <span id="place" class="text text-uppercase text-secondary fw-bold"><?php echo $Place ;
+                                <span id="place" class="text text-uppercase text-secondary fw-bold"><?php echo ($Place);
                                 ?></span>
                                 <br>
                                 <br>
-                                <span id="date" class="text text-uppercase text-secondary fw-bold"><?php echo $Date; ?></span>
+                                <span id="date" class="text text-uppercase text-secondary fw-bold"><?php echo ($Date); ?></span>
                                 <br>
                                 <br>
                                 <span class="text text-uppercase text-secondary fw-bold"><u>infó:</u></span>

@@ -77,9 +77,8 @@ function getDateEvent(){
     day = findDateParts(days,rawDate);
     day.trim();
     
-
     let monthNum;
-
+    
     switch(rawMonth){
         case months[0]: monthNum = 01; 
             break;
