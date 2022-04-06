@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="TITLE" content="Aikido edzés Cegléd">
         <meta name="DESCRIPTION" content="A webpage for the Chuushin aikido dojo in Cegléd.">
-        <meta name="KEYWORDS" content="aikido, cegléd, edzés, harcművészet, testmozgás, fegyveres, kard, katana, szamurák">
+        <meta name="KEYWORDS" content="aikido, cegléd, edzés, harcművészet, testmozgás, fegyveres, kard, katana, szamuráj">
         <meta name="ROBOTS" content="index">
         <meta name="REVISIT-AFTER" content="10 days">
         <meta name="CONTENT-LANGUAGE" content="hungarian">
@@ -17,6 +17,7 @@
         <!-- CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
         <link href="indexReborn.css" rel="stylesheet" type="text/css">
+        <meta name="google-site-verification" content="SgTfSMZV7e1sYbaYWoXUlSyPkHYuOqZ_cO_fLcwGbS8" />
     </head>
     <body>
         <section id="header" class="mt-5">
