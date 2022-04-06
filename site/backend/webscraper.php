@@ -7,8 +7,10 @@
     $TitleDescription;  # Esemény leírása
     $Place;             # Esemény helyszíne
     $Date;              # Esemény dátuma
-    $Other = 'Teszt';             # Egyéb 
-
+    $Other;             # Egyéb 
+    $SearchPlace = 'helyszín';
+    $SearchDate  = 'időpont';
+    
     # WebScraper
     include ('simpleDom/simple_html_dom.php');
 
@@ -16,7 +18,7 @@
 
     $html = file_get_html($websiteUrl);
     # ID amit keresek:  event_2
-    $Counter = 0;
+    $EventData;
 
     foreach($html -> find('#event_2') as $postDiv ) {
         # Kép címének megkeresése
@@ -36,22 +38,34 @@
             $TitleDescription = substr($a, 4, -5 );
             #echo ($TitleDescription);
         }
-/* Itt van a baj ,mert megváltozott a kiolvasott divnek a szerkezete és így már nem jó sorrende szedi ki a 'p' tageket. */        
+        
         # Helyszín
         foreach($postDiv -> find('p') as $a){
             /*
-            if($Counter == 10){
-                $Other = substr($a, 3, -4 );
-            } 
+                $Other = substr($a, 3, -4 ); 
             */
-            if( $Counter == 0){
-                $Place = str_replace("Helyszín:","<u>HELYSZÍN:</u> <br>",substr($a, 3, -4 ));   
-            }
+            /* Kisbetűsre konvertáljuk a teljes stringet amiben keresünk ,mert kisbetűs a változó is ami a keresett stringet tartalmazza. */
+            $a = strtolower($a);
+            /* Nem countert fogunk használni ,hanem azt vizsgáljuk, hogy az időpont vagy a helyszín szó szerepel-e az adott elemben. */
+            $PlacePos = strpos($a, $SearchPlace);
+            $DatePos = strpos($a, $SearchDate);
 
-            if( $Counter == 1){  
-                $Date = str_replace("Időpont:", "<u>IDŐPONT:</u> <br>", substr($a, 3, -4 ));
+            if($PlacePos !== false){
+                $EventData = $SearchPlace;
+            };
+                
+            if($DatePos !== false){
+                $EventData = $SearchDate;
+            };
+                
+            switch($EventData) {
+                case 'helyszín':
+                    $Place = str_replace("Helyszín:","<u>HELYSZÍN:</u> <br>",substr($a, 3, -4 )); 
+                    break;
+                case 'időpont':
+                    $Date = str_replace("Időpont:", "<u>IDŐPONT:</u> <br>", substr($a, 3, -4 ));
+                    break;    
             }
-            $Counter++;
         }
     }
 ?>
