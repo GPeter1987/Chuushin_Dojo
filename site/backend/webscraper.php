@@ -2,12 +2,12 @@
     #include 'site/backend/webscraper.php'; Ez lesz majd az include link!
 
     # Globális változók
-    $ImgUrl;            # Kép src címe
-    $Title;             # Esemény címe
-    $TitleDescription;  # Esemény leírása
-    $Place;             # Esemény helyszíne
-    $Date;              # Esemény dátuma
-    $Other;             # Egyéb 
+    $ImgUrl           = " ";  # Kép src címe
+    $Title            = " ";  # Esemény címe
+    $TitleDescription = " ";  # Esemény leírása
+    $Place            = " ";  # Esemény helyszíne
+    $Date             = " ";  # Esemény dátuma
+    $Other            = " ";  # Egyéb 
     $SearchPlace = 'helyszín';
     $SearchDate  = 'időpont';
     
@@ -68,6 +68,14 @@
             }
         }
     }
+
+    #ShowOrNot
+    /* A weblapon kiírásnál a szöveg csak akkor jelenik meg ,ha nem üres string */
+    function showOrNot($Data){
+        if( $Data !== " ") {
+            echo $Data;
+        }
+    }
 ?>
     <!--  Megjelenítés az oldalon -->
     <div class="container pt-2 mt-5" id="actuality">
@@ -76,16 +84,18 @@
                 <img src="https://www.yurusuaikido.hu/<?php echo $ImgUrl; ?>" alt="The cover image of the event" class="img-fluid rounded w-100">
             </div>          
                         <div class="col-sm-12 col-md-4 mt-auto mb-auto">
-                            <h1 class="text text-uppercase text-center text-warning m-3"><?php echo ($Title); ?></h1>
+                            <h1 class="text text-uppercase text-center text-warning m-3"><?php showOrNot($Title); ?></h1>
                             <p class="text text-secondary">
-                                <?php echo $TitleDescription ;?>
+                                <?php 
+                                    showOrNot($TitleDescription);
+                                ;?>
                                 <br>
                                 <br>
-                                <span id="place" class="text text-uppercase text-secondary fw-bold"><?php echo ($Place);
+                                <span id="place" class="text text-uppercase text-secondary fw-bold"><?php showOrNot($Place);
                                 ?></span>
                                 <br>
                                 <br>
-                                <span id="date" class="text text-uppercase text-secondary fw-bold"><?php echo ($Date); ?></span>
+                                <span id="date" class="text text-uppercase text-secondary fw-bold"><?php showOrNot($Date); ?></span>
                                 <br>
                                 <br>
                                 <span class="text text-uppercase text-secondary fw-bold"><u>infó:</u></span>
@@ -94,12 +104,14 @@
                                 <br>
                                 
                                 <p id="other" class="text text-center text-secondary fw-bold">
-                                    <?php echo $Other; ?>
+                                    <?php
+                                    showOrNot($Other)
+                                    ;?>
                                 </p>
                             
                             </p>
                             <p class="text text-secondary text-center border-top border-2 p-2 fw-bold">
-                                <?php echo $Date; ?>
+                                <?php showOrNot($Date); ?>
                             </p>
                             <a id="btnEvent" href="https://www.yurusuaikido.hu/" class="btn btn-outline-light m-3 d-grid mx-auto" target="_blank"><span>Tovább az eseményhez...</span></a>
                         </div>
