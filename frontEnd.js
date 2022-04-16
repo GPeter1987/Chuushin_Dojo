@@ -54,58 +54,35 @@ function getDateEvent(){
     rawDate = dateOrig.textContent;
     
     // Dátum kiszedése
-    let years   = ["2022", "2023"];
-    let months  = [ "január", "február", "március", "április", "május", "június",
-                    "július", "augusztus", "szeptember", "október", "november", "december"];
-    let days    = [ "1.", "2.", "3.", "4.", "5.", 
-                    "6.", "7.", "8.", "9.", "10.",
-                    "11.", "12.", "13.", "14.","15.",
-                    "16.","17.","18.","19.","20.",
-                    "21.","22.","23.","24.","25.",
-                    "26.","27.","28.","29.","30.","31."];
+    let assoMonths = {  "január": 1, "február": 2, "március": 3, "április": 4,
+                        "május": 5, "június": 6, "július": 7, "augusztus": 8, "szeptember": 9, "október": 10, "november": 11, "december": 12 };
+
+    let tmpArr = rawDate.split(" ");
 
     // Évszám kiszedése
-    year = findDateParts(years,rawDate);
-    year.trim();
+    if(isNaN(tmpArr[1].slice(-1))) //ha az utolsó karakter nem szám
+		year=tmpArr[1].substring(0,tmpArr[1].length-1); //akkor levágjuk
+	else year=tmpArr[1];
     
     // Hónap kiszedése
-    rawMonth = findDateParts(months,rawDate);
-    rawMonth.toLowerCase();
-    rawMonth.trim();
-    
-    // Nap kiszedése
-    day = findDateParts(days,rawDate);
-    day.trim();
+    if(isNaN(tmpArr[3].slice(-1))) //ha az utolsó karakter nem szám
+		day=tmpArr[3].substring(0,tmpArr[3].length-1); //akkor levágjuk
+	else day=tmpArr[3];
     
     let monthNum;
     
-    switch(rawMonth){
-        case months[0]: monthNum = 01; 
-            break;
-        case months[1]: monthNum = 02; 
-            break;
-        case months[2]: monthNum = 03; 
-            break;
-        case months[3]: monthNum = 04; 
-            break;
-        case months[4]: monthNum = 05; 
-            break; 
-        case months[5]: monthNum = 06; 
-            break;
-        case months[6]: monthNum = 07; 
-            break;
-        case months[7]: monthNum = 08; 
-            break;
-        case months[8]: monthNum = 09; 
-            break;
-        case months[9]: monthNum = 10; 
-            break;
-        case months[10]: monthNum = 11; 
-            break; 
-        case months[11]: monthNum = 12; 
-            break;
-        default : console.log('Error on the event month.');
-    }
+    if(isNaN(tmpArr[2])){ //ha nem szám a hónap, vagyis szövegesen van kiírva
+		if(assoMonths.hasOwnProperty(tmpArr[2])) //akkor ha az objektumban definiált (érvényes) hónapról van szó
+			monthNum=assoMonths[tmpArr[2]]; //akkor a szöveges index alapján kikeressük a hozzá tartozó számot
+		else{ //ha szöveges és érvénytelen a hónap név
+			if(isNaN(tmpArr[2].substring(0,tmpArr[2].length-1))) //akkor még mindig 2 lehetőség maradt: vagy <szám>. formátumban van, vagy tényleg érvénytelen
+				return; //ha érvénytelen, akkor nincs értelme folytatni, nincs esemény (kilépünk)
+			else monthNum=tmpArr[2].substring(0,tmpArr[2].length-1); //ha "nem nem szám" (vagyis szám) n-1 hosszon, akkor levágjuk az utolsó karaktert
+		}
+	}
+	else //egyébként (ha szám a hónap)
+		monthNum=tmpArr[2];
+        
     console.log(year + " " + monthNum + " " + day);
     actualEvent(year,monthNum,day);
 }
