@@ -81,7 +81,7 @@
     <div class="container pt-2 mt-5" id="actuality">
         <div class="row mt-3 p-2 rounded">  
             <div class="col-sm-12 col-md-8 mt-auto mb-auto" id="welcomePic">
-                <img src="https://www.yurusuaikido.hu/<?php echo $ImgUrl; ?>" alt="The cover image of the event" class="img-fluid rounded w-100">
+                <img src="https://www.yurusuaikido.hu/<?php showOrNot($ImgUrl); ?>" alt="The cover image of the event" class="img-fluid rounded w-100">
             </div>          
                         <div class="col-sm-12 col-md-4 mt-auto mb-auto">
                             <h1 class="text text-uppercase text-center text-warning m-3"><?php showOrNot($Title); ?></h1>
